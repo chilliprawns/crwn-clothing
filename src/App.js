@@ -34,12 +34,13 @@ class App extends React.Component {
             }
           },
           () => {
+            // Can get rid of this
             console.log(this.state);
           });
         });
       }
       
-      this.setState({currentUser: userAuth});
+      this.setState({ currentUser: userAuth});
    });
   }
 
