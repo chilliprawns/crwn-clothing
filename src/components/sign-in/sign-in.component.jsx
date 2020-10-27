@@ -13,13 +13,15 @@ class SignIn extends React.Component {
     this.state = {
       email: '',
       password: ''
-    }
+    };
   }
 
   handleSubmit = async (event) => {
     event.preventDefault();
 
     const {email, password} = this.state;
+
+    console.log('signing in', this.state);
 
     try {
       await auth.signInWithEmailAndPassword(email, password);
@@ -45,19 +47,19 @@ class SignIn extends React.Component {
 
         <form onSubmit={this.handleSubmit}>
           <FormInput 
-            name="email" 
-            type="email" 
+            name='email' 
+            type='email' 
             value={this.state.email}
             handleChange={this.handleChange}
-            label="email"
+            label='email'
             required
           />
           <FormInput 
-            name="password" 
-            type="password" 
+            name='password' 
+            type='password' 
             value={this.state.password}
             handleChange={this.handleChange}
-            label="password"
+            label='password'
             required 
           />
           <div className='buttons'>
