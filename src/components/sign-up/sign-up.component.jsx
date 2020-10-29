@@ -16,41 +16,45 @@ class SignUp extends React.Component {
       email: '',
       password: '',
       confirmPassword: ''
-    }
+    };
   }
 
   handleSubmit = async event => {
     event.preventDefault();
 
-    const {displayName, email, password, confirmPassword} = this.state;
+    const { displayName, email, password, confirmPassword } = this.state;
 
-    if(password !== confirmPassword) {
+    if (password !== confirmPassword) {
       alert("passwords don't match");
+      return;
     }
 
     try {
-      const {user} = await  auth.createUserWithEmailAndPassword(email, password);
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
 
-      await createUserProfileDocument(user, {displayName});
+      await createUserProfileDocument(user, { displayName });
       this.setState({
         displayName: '',
         email: '',
         password: '',
         confirmPassword: ''
-      })
+      });
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   handleChange = event => {
-    const {name, value} = event.target;
-    this.setState({[name]: value});
-  }
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
 
   render() {
-    const {displayName, email, password, confirmPassword} = this.state;
-    return(
+    const { displayName, email, password, confirmPassword } = this.state;
+    return (
       <div className='sign-up'>
         <h2 className='title'>I do not have an account</h2>
         <span>Sign up with your email and password</span>
@@ -84,16 +88,14 @@ class SignUp extends React.Component {
             name='confirmPassword'
             value={confirmPassword}
             onChange={this.handleChange}
-            label='Confirm password'
+            label='Confirm Password'
             required
           />
           <CustomButton type='submit'>SIGN UP</CustomButton>
         </form>
       </div>
-    )
+    );
   }
-
-
 }
 
 export default SignUp;
